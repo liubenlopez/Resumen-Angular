@@ -1,0 +1,44 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Uso de directivas Estructurales Básicas</h5>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">NgIf</h5>
+                <div class="card-text mb-2">Seleccione el equipo de jugadores:</div>
+                <button class="btn btn-primary me-2 mt-1" (click)="seleccionarEquipo('equipo1')">Equipo 1</button>
+                <button class="btn btn-primary mt-1" (click)="seleccionarEquipo('equipo2')">Equipo 2</button>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">NgFor</h5>
+                <div class="card-text">
+                    <span class="badge bg-primary me-1" *ngFor="let persona of equipoSeleccionado; let i = index">
+                        {{(i+1)+" "+persona}}
+                    </span>
+                    <div *ngIf="!equipoSeleccionado">En espera de la selección...</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-3">NgSwitch</h5>
+                <input type="number" placeholder="Día de la semana [1-7]" class="form-control mb-3"
+                    (keyup)="validateDay(diaInput.value)" #diaInput>
+                <div [ngSwitch]="dia">
+                    <span *ngSwitchCase="0">Inserte un día de la semana de forma numérica (del 1 al 7)</span>
+                    <span *ngSwitchCase="1">Lunes</span>
+                    <span *ngSwitchCase="2">Marte</span>
+                    <span *ngSwitchCase="3">Miercoles</span>
+                    <span *ngSwitchCase="4">Jueves</span>
+                    <span *ngSwitchCase="5">Viernes</span>
+                    <span *ngSwitchCase="6">Sabado</span>
+                    <span *ngSwitchCase="7">Domingo</span>
+                    <span *ngSwitchDefault>
+                        {{dia}} no es un día de la semana. Inserte un día de la semana de forma numérica (del 1 al 7).
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

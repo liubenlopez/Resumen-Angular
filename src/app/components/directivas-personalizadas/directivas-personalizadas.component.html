@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Directivas personalizadas</h5>
+        <p class="card-text">
+            Las directivas en Angular son clases que agregan nuevo comportamiento o modifican el comportamiento
+            existente a los elementos de la plantilla. En esencia, las directivas son responsables de extender HTML y
+            proporcionar funcionalidades.
+        </p>
+        <p class="card-text" appSubrayar="#bce3ff">
+            Este texto tiene aplicado una directiva personalizada que asigna un color de fondo dado, cuando el mouse
+            entra al objeto le asigna un color de fondo amarrillo y cuando sale lo modifica a un amarillo mas claro.
+        </p>
+        <p class="card-text " appSubrayarColorRandom="">
+            Este texto tiene aplicado una directiva personalizada que asigna un color de fondo aleatorio.
+        </p>
+        <p class="card-text">
+            El div siguiente tiene aplicada una directiva personalizada que al igual que la directiva ngFor repite x
+            veces un elemento HTML pero le asigna un color de fondo aleatorio.
+        </p>
+        <div *appRepetirSubrayado="3">
+            <div>Elemento creado y modificado por directiva personalizada.</div>
+        </div>
+    </div>
+</div>

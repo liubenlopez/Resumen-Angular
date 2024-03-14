@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Componente restringido por guardas</h5>
+        <p class="card-text">
+            Las guardas (guards) en Angular son esencialmente funciones de middleware que se ejecutan antes de cargar
+            una ruta específica y determinan si la ruta se puede cargar o no. Proporcionan una forma de controlar el
+            acceso a determinadas rutas en su aplicación. Puede utilizar guardas para proteger vistas privadas o
+            implementar guardas de ruta funcionales para manejar diversos escenarios, como comprobaciones de
+            autenticación o autorización. Se pueden aplicar a todo el árbol de rutas hijas.
+        </p>
+        <div class="card-text">
+            <p>Existen varios tipos de guardas en angular, entre ella</p>
+            <p><strong>CanActivate:</strong> Esta guarda decide si se puede activar una ruta, si devuelven verdadero, la
+                navegación continúa.</p>
+            <p><strong>CanActivateChild:</strong> similar a CanActivate, pero específicamente para rutas secundaria.</p>
+            <p><strong>CanLoad:</strong> Esta guarda se utiliza para controlar la carga de un módulo.</p>
+            <p><strong>CanDeactivate:</strong> esta protección se utiliza para controlar si un usuario puede alejarse de
+                una ruta.</p>
+            <p><strong>Resolver:</strong> esta protección se utiliza para obtener datos previamente antes de que se
+                active una ruta.</p>
+            <p>Estos guardias se pueden utilizar para implementar varias funciones de seguridad y navegación en su
+                aplicación Angular.</p>
+            <p><strong>En este componente se aplicó CanActivate que requiere que se le asigne permiso de acceso y
+                    CanDeactivate que pide confirmación antes de salir de la ruta.</strong></p>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

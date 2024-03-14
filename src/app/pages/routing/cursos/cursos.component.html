@@ -1,0 +1,38 @@
+<div class="card p-3">
+    <div class="card-body ">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <h5 class="card-title">Curso de {{courseName}}</h5>
+                <img src="./../../../../assets/images/{{(courseName | lowercase )}}.png">
+            </div>
+            <div class="col-md-8">
+                <h6 class="card-text">
+                    Nombre del curso pasado por parámetros dentro de la URL (parámetros anteriores al separador ?),
+                    curso/:nombreCurso
+                </h6>
+                <p class="card-text pt-2" *ngIf="courseName=='Angular'">
+                    Angular es una plataforma de desarrollo, construida sobre TypeScript. Es un marco basado en
+                    componentes para la creación de aplicaciones web. Desarrollado por Google, Angular sirve para
+                    desarrollar aplicaciones web de una sola página con un estilo similar a las aplicaciones de
+                    escritorio. Es un marco de código abierto que proporciona una infraestructura sólida para crear
+                    aplicaciones web escalables y mantenibles. Angular está escrito en TypeScript, utiliza HTML y
+                    TypeScript para crear interfaces de usuario.
+                </p>
+                <p class="card-text pt-2" *ngIf="courseName=='React'">
+                    React es una biblioteca de JavaScript para crear interfaces de usuario. Está diseñado para crear
+                    interfaces rápidas y dinámicas componiendo piezas individuales llamadas componentes. React es una
+                    alternativa a marcos como Angular y Vue, que permite a los desarrolladores crear funciones
+                    complejas. Es una biblioteca de código abierto, basada en componentes, para construir interfaces de
+                    usuario.
+                </p>
+                <p class="card-text pt-2" *ngIf="courseName=='Vue'">
+                    Vue.js es un marco de JavaScript progresivo para crear interfaces de usuario (UI) y aplicaciones de
+                    una sola página. Fue creado por Evan You y ofrece la flexibilidad necesaria para desarrollar
+                    aplicaciones web modernas. Vue.js es conocido por su simplicidad, facilidad de uso y rendimiento.
+                    Permite a los desarrolladores crear aplicaciones de una forma rápida, divertida, sencilla y
+                    práctica.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

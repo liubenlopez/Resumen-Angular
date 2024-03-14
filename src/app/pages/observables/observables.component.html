@@ -1,0 +1,494 @@
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Observables</h5>
+        <p class="card-text">
+            Los observables en Angular son una herramienta poderosa para manejar operaciones asincrónicas y administrar
+            flujos de datos. Son una característica central de la programación reactiva y proporcionan una forma de
+            procesar múltiples valores entregados a lo largo del tiempo. Para iniciar la ejecución del observable hay
+            que suscríbete a este usando el método subscribe(). Cuando el componente donde está la subscripción se
+            destruye o ya no va a seguir siendo usado el observable hay que desuscribirse con el método unsubscribe()
+            para así evitar fugas de memoria.
+            Los operadores en observables son funciones que reciben un Observable como entrada y generan otro Observable
+            como salida. Son esencialmente funciones puras que operan en Observables, lo que permite una manipulación
+            más sofisticada de las colecciones. Algunas categorías comunes de operadores incluyen filtrado,
+            transformación y combinación. Estos operadores permiten a los desarrolladores controlar y emitir solo la
+            información deseada de Observables de la manera deseada.
+        </p>
+        <p class="card-text">
+            RxJS es una librería que proporciona una implementación de programación reactiva en JavaScript. En el
+            contexto de Angular, RxJS es ampliamente utilizado para manejar flujos de datos asincrónicos y eventos. Esta
+            librería ofrece una variedad de operadores como map, filter, concat, entre otros, que permiten transformar y
+            manipular flujos de datos de manera eficiente.
+        </p>
+
+        <h6>Hay un retraso en las respuestas para ver la asincronía.</h6>
+    </div>
+</div>
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="container-fluid pt-auto pb-auto">
+            <div class="row">
+                <div class="col-md-12 pb-auto">
+                    <h5 class="card-title">Observables y operadores</h5>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El Observable 1 recibe una suscrición al operador interval() de RxJS que retorna un
+                                Observable que emite una secuencia infinita de números de forma incremental.
+                            </div>
+                            <button class="btn btn-primary w-100" *ngIf="!obs1Activo"
+                                (click)="subscribeObservable1()">Subscribe Obs. 1</button>
+                            <button class="btn btn-primary w-100" *ngIf="obs1Activo"
+                                (click)="unsubscribeObservable1()">Unsubscribe Obs. 1</button>
+                            <div class="mt-2">Resp. Obs. 1: {{respuesta1}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El Observable 2 emite una secuencia de 3 números espaciados con un segundo entre ellos.
+                                Cuando la emisión llega a 3 se realiza la descripción del Observable 2.
+                            </div>
+                            <button class="btn btn-primary w-100" *ngIf="!obs2Activo"
+                                (click)="subscribeObservable2()">Subscribe Obs. 2</button>
+                            <button class="btn btn-primary w-100" *ngIf="obs2Activo"
+                                (click)="unsubscribeObservable2()">Unsubscribe Obs. 2</button>
+                            <div class="mt-2">Resp. Obs. 2: {{respuesta2}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador takeUntil() es un operador que se utiliza para emitir valores hasta
+                                que un observable proveído emite su primera notificación. Ej. takeUntil(timer$)
+                                'timer=5'.
+                            </div>
+                            <button class="btn btn-primary w-100" *ngIf="!obs3Activo"
+                                (click)="start()">takeUntil</button>
+                            <button class="btn btn-primary w-100" *ngIf="obs3Activo" (click)="stop()">Stop</button>
+                            <div class="mt-2">Prueba op. takeUntil: {{respuesta3}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                Enl operador take se utiliza para emitir solo una cantidad específica de valores
+                                del Observable fuente antes de completarse. Ej. take(5) detiene la subscripcion tras 5
+                                emiciones.
+                            </div>
+                            <button class="btn btn-primary w-100" *ngIf="!obs4Activo" (click)="start4()">take</button>
+                            <button class="btn btn-primary w-100" *ngIf="obs4Activo" (click)="stop4()">Stop</button>
+                            <div class="mt-2">Prueba op. take: {{respuesta4}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador map se utiliza para aplicar una función de proyección a cada valor
+                                emitido por un Observable fuente y emitir los valores resultantes como un Observable.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="getSquaredNumbers()">map</button>
+                            <div class="mt-2">{{squaredNumbersResp.length==0?"Devuelve el cuadrado"
+                                :( squaredNumbersResp | json)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador filter se utiliza para filtrar los valores emitidos por un
+                                Observable fuente según una función de predicado específica. Solo emite
+                                aquellos valores que satisfacen la condición.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="getParesNumbers()">filter</button>
+                            <div class="mt-2">{{paresNumbersResp.length==0?"Devuelve los pares"
+                                :( paresNumbersResp | json)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador merge se utiliza para combinar múltiples observables en un solo
+                                observable. Permite fusionar los valores emitidos por diferentes observables en un único
+                                flujo continuo de datos.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="mergedNumbersFunct()">merge</button>
+                            <div class="mt-2">{{mergedNumbersArray.length==0?"fusiona of(1,...,7) y of(8,...,10)"
+                                :( mergedNumbersArray | json)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador concat se utiliza para combinar múltiples observables en uno solo, emitiendo
+                                los valores de cada observable de forma secuencial, uno después del otro, como si fueran
+                                una cola.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="concatNumbersFunct()">concat</button>
+                            <div class="mt-2">{{concatNumbersArray.length==0?"concatena of(1,...,7) y of(8,...,10)"
+                                :( concatNumbersArray | json)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador tap se utiliza para realizar acciones sin modificar los valores emitidos por
+                                un Observable. Cualquier acción sobre los datos obtenidos no afecta el flujo principal
+                                de datos.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="mapTap()">tap</button>
+                            <div class="mt-2">{{mapTapArray.length==0?"Prueba operador tap"
+                                :( mapTapArray | json)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador delay se utiliza para retrasar la emisión de valores de un Observable por un
+                                tiempo especificado. Puede aceptar un valor numérico que representa el retraso en
+                                milisegundos hasta la cual se retrasará la emisión.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="delayOp()">delay</button>
+                            <div class="mt-2">{{delayed==""?"Prueba op. delay 1s"
+                                :delayed}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador timestamp se utiliza para adjuntar una marca de tiempo a cada valor emitido
+                                por el Observable como atributo de este. Útil para saber cuándo se emitió un valor
+                                o medir el tiempo entre emisiones.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="timestampOp()">timestamp</button>
+                            <div class="mt-2">{{timestamp.length==0?"Prueba op. timestamp"
+                                :(timestamp)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador single devuelve un Observable que emite un solo elemento que coincide con un
+                                predicado especificado, de lo contrario emite un error. Se utiliza para buscar un
+                                elemento específico en un flujo de datos.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="operadorSingle()">single</button>
+                            <div class="mt-2">{{valorDevueltoPorSingle==0?"Op. single(val => val === 6)"
+                                :(valorDevueltoPorSingle)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador startWith se utiliza para preceder un valor o varios valores al inicio de un
+                                Observable. Y emite esos valores antes de emitir cualquier otro valor del Observable
+                                original.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="operadorStartWith()">startWith</button>
+                            <div class="mt-2">{{valoresOperadorStartWith.length==0?"Prueba op. startWith"
+                                :(valoresOperadorStartWith)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador fromEvent se utiliza para convertir eventos en observables. Crear un
+                                Observable que emite eventos, como clics de ratón, teclas presionadas, entre otros.
+                            </div>
+                            <button class="btn btn-primary w-100" #idFromEvent>fromEvent</button>
+                            <div class="mt-2">{{fromEventArray.length==0?"Prueba op. fromEvent"
+                                :(fromEventArray | json)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador withLatestFrom se utiliza para combinar los valores más recientes de otros
+                                observables con los valores emitidos por el observable fuente. Solo emite cuando el
+                                fuente emite.
+                            </div>
+                            <button class="btn btn-primary w-100"
+                                (click)="operadorWithLatestFrom()">withLatestFrom</button>
+                            <div class="mt-2">{{withLatestFromValues.length==0?"Prueba op. withLatestFrom"
+                                :(withLatestFromValues | json)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                El operador concatWith se utiliza para concatenar los valores de un Observable con los
+                                valores de otros Observables. Primero, se emiten todos los valores del Observable
+                                fuente, y luego, una vez que se completa, se suscribe a cada Observable proporcionado
+                                secuencialmente, emitiendo todos sus valores.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="operadorConcatWith()">concatWith</button>
+                            <div class="mt-2">{{resultConcatWith.length==0?"Prueba op. concatWith"
+                                :(resultConcatWith | json)}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                Un Subject es un tipo especial de Observable que permite que los valores se difundan a
+                                múltiples Observer. Mientras que los Observables regulares son unicast (cada Observer
+                                tiene ejecución independiente del Observable), los Subjects son multicast. Los Subjects
+                                son cuando el código que estás ejecutando es el que origina los datos del Observable.
+                            </div>
+                            <button class="btn btn-primary w-100" (click)="ejecutarSubject()">Subject</button>
+                            <div class="mt-2">{{contMySubject==0?"Prueba Subject":""}}{{mySubject | async}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                Un BehaviorSubject es un tipo especializado de Subject que mantiene y proporciona un
+                                valor actual a los suscriptores. Cuando un nuevo observador se suscribe a un
+                                BehaviorSubject, recibe inmediatamente el valor actual (o el último valor emitido).
+                            </div>
+                            <button class="btn btn-primary w-100"
+                                (click)="ejecutarBehaviorSubject()">BehaviorSubject</button>
+                            <div class="mt-2">{{myBehaviorSubject | async}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6>
+                                Buscador con el operador switchMap para cancela la operación de búsqueda en curso y
+                                comenzar una nueva cada vez que se presiona una tecla.
+                            </h6>
+                            <div class="mb-2">
+                                <span class="badge bg-primary me-1">PALABRAS POSIBLES:</span>
+                                <span class="badge bg-secondary me-1" *ngFor="let item of valores">{{item}}</span>
+                            </div>
+                            <input type="text" placeholder="Search con un dealy de 2s" class="form-control"
+                                (keyup)="searchMethod(search.value)" #search>
+                            <div class="mt-1">
+                                <span class="badge bg-secondary me-1" *ngIf="resultOfTheSearch.length==0 && !buscando">
+                                    Sin coincidencias
+                                </span>
+                                <span class="badge bg-secondary me-1" *ngIf="buscando">
+                                    Buscando...
+                                </span>
+                                <span class="badge bg-primary me-1" *ngFor="let item of resultOfTheSearch">
+                                    {{item}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="container-fluid pt-auto pb-auto">
+            <div class="row">
+                <div class="col-md-12 pb-auto">
+                    <h5 class="card-title">Comunicación entre componentes usando BehaviorSubject</h5>
+                </div>
+                <div class="col-md-6">
+                    <app-componente1></app-componente1>
+                </div>
+                <div class="col-md-6">
+                    <app-componente2></app-componente2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="container-fluid pt-auto pb-auto">
+            <div class="row">
+                <div class="col-md-12 pb-3">
+                    <h5 class="card-title">Uso de operadores sobre la API de Rick y Morty</h5>
+                    <div class="card-text mb-3">
+                        Para este ejemplo se utiliza la REST API de rickandmorty que brinda de forma gratuita
+                        diferentes contenidos accesibles desde el sitio
+                        <a href="https://rickandmortyapi.com/" target="_blank">https://rickandmortyapi.com/</a>.
+                        Para las búsquedas se realizan peticiones al recurso "Character" de esta REST API.
+                    </div>
+                    <button class="btn btn-primary mb-1 me-2" (click)="getCharacters(API)">Buscar todos los
+                        personajes</button>
+                    <button class="btn btn-primary mb-1 me-2" (click)="getCharacter()">Buscar personaje
+                        aleatorio</button>
+                    <button class="btn btn-primary mb-1 me-2" (click)="toggleformularioBuscarPersonaje()">
+                        Buscar nombre del personaje
+                        <i class="fa {{formularioBuscarPersonajeHidde?'fa-angle-double-down'
+                        :'fa-angle-double-up'}}">
+                        </i>
+                    </button>
+                </div>
+                <form #formularioBuscarPersonaje="ngForm" [hidden]="formularioBuscarPersonajeHidde"
+                    (ngSubmit)="buscarPersonajeByName(nombrePersonaje)">
+                    <div class="input-group mb-3">
+                        <input type="text" min="3" required name="nombrePersonaje" [(ngModel)]="nombrePersonaje"
+                            class="form-control" (keyup)="buscarPersonajeByName(nombrePersonaje)"
+                            placeholder="Inserte el nombre del personaje que desea buscar. Ejemplo: Rick">
+                        <button class="btn btn-primary" [disabled]="formularioBuscarPersonaje.invalid"
+                            type="submit">Buscar</button>
+                    </div>
+                </form>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div *ngIf="spinnerShow">
+                                <div class="{{tabVisible==3?'mb-4':''}}">
+                                    <app-spinner (spinnerClosed)="spinnerShow = $event"></app-spinner>
+                                </div>
+                            </div>
+
+                            <div *ngIf="tabVisible==0">
+                                Seleccione algún método de búsqueda
+                            </div>
+
+                            <div *ngIf="tabVisible==1">
+                                <div class="row" *ngIf="characters$ | async as data">
+                                    <div class="col-md-12 mb-3">
+                                        Con el uso del operador share() se cachea la petición del Observable characters$
+                                        y aunque hay dos suscripciones con la pipe async a este en la pestaña network
+                                        del browser se ve una sola llamada a la
+                                        API="https://rickandmortyapi.com/api/character?page=1".
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="characters$ | async as data">
+                                    <div class="col-md-12 mb-3">
+                                        <button class="btn btn-primary me-2" *ngIf="data.info.prev"
+                                            (click)="getCharacters(data.info.prev)">
+                                            <i class="fa fa-angle-double-left"></i> Anterior
+                                        </button>
+                                        <button class="btn btn-outline-primary me-2"
+                                            (click)="toggleformularioPageNumberHidde()">
+                                            {{paginaActual}} &nbsp; Cantidad: {{data.info.count}} &nbsp;
+                                            <i class="fa {{formularioPageNumberHidde?'fa-angle-double-down'
+                                            :'fa-angle-double-up'}}">
+                                            </i>
+                                        </button>
+                                        <button class="btn btn-primary" *ngIf="data.info.next"
+                                            (click)="getCharacters(data.info.next)">
+                                            Siguiente <i class="fa fa-angle-double-right"></i>
+                                        </button>
+                                        <form #formularioPageNumber="ngForm" [hidden]="formularioPageNumberHidde"
+                                            (ngSubmit)="getCharactersPageNumber()">
+                                            <div class="input-group mt-3">
+                                                <input type="number" min="1" max="{{data.info.pages}}" required
+                                                    name="paginaNumberToGet" [(ngModel)]="paginaNumberToGet"
+                                                    class="form-control"
+                                                    placeholder="Inserte el número de la página que desea cargar (entre 1 y {{data.info.pages}}).">
+                                                <button class="btn btn-primary"
+                                                    [disabled]="formularioPageNumber.invalid"
+                                                    type="submit">Enviar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-4 col-lg-3 mb-4" *ngFor="let item of data.results">
+                                        <div class="card text-center shadow">
+                                            <img src="{{item.image}}" alt="">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-primary lead">{{item.name}}</h5>
+                                                <p class="lead text-secondary">{{item.species}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="tabVisible==2">
+                                <div class="row" *ngIf="character$ | async as character">
+                                    <div class="col-md-12 mb-3">
+                                        Se selecciona aleatoriamente una de las 42 páginas de personajes, posteriormente
+                                        con el operador map() se obtiene la lista de personajes y aleatoriamente se
+                                        selecciona uno y se devuelve su id, después con el operador switchMap() se
+                                        obtiene el id del personaje a buscar y se mapea el Observable el observable que
+                                        devuelve personajes. Se utiliza switchMap() porque el observable anterior se
+                                        cancela y se inicia uno nuevo, lo cual es una opción segura para evitar posibles
+                                        fugas de memoria con observables de larga duración.
+                                    </div>
+                                    <div class="col-md-4 col-lg-3 mb-1">
+                                        <div class="card text-center shadow">
+                                            <img src="{{character.image}}" alt="">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-primary lead">{{character.name}}</h5>
+                                                <p class="lead text-secondary">{{character.species}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="tabVisible==3">
+                                <div class="row">
+                                    <div class="col-md-12" *ngIf="errorEnLaBusquedaDePersonajes">
+                                        Sin resultados
+                                    </div>
+                                    <div class="col-md-12 mb-3"
+                                        *ngIf="!errorEnLaBusquedaDePersonajes && resultadosDePersonajes.length>0">
+                                        <button class="btn btn-primary me-2" *ngIf="infoDeLaBusqueda.prev"
+                                            (click)="buscarPersonajeByNameAndPage(infoDeLaBusqueda.prev)">
+                                            <i class="fa fa-angle-double-left"></i> Anterior
+                                        </button>
+                                        <button class="btn btn-outline-secundary me-2" disabled>
+                                            {{paginaActualSearch}} &nbsp; Cantidad: {{infoDeLaBusqueda.count}}
+                                        </button>
+                                        <button class="btn btn-primary" *ngIf="infoDeLaBusqueda.next"
+                                            (click)="buscarPersonajeByNameAndPage(infoDeLaBusqueda.next)">
+                                            Siguiente <i class="fa fa-angle-double-right"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4 col-lg-3 mb-4" *ngFor="let item of resultadosDePersonajes">
+                                        <div class="card text-center shadow">
+                                            <img [src]="item.image" alt="">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-primary lead">{{item.name}}</h5>
+                                                <p class="lead text-secondary">{{item.species}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

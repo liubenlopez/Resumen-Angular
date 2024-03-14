@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@ViewChild</h5>
+        <p class="card-text">
+            El decorador "@ViewChild" en Angular es un decorador de propiedades que le permite consultar elementos o
+            directivas dentro de la plantilla de un componente. Se utiliza para acceder a un componente secundario,
+            directiva o elemento DOM desde un componente principal.
+        </p>
+        <p class="card-text">
+            En el siguiente formulario los elementos son obtenidos con @ViewChild.
+        </p>
+        <div class="card">
+            <div class="card-body">
+                <div (click)="clickContainer()" class="mb-3 cursor-pointer">Hazme click</div>
+                <form #formularioViewChild="ngForm" (submit)="onSubmit()">
+                    <input type="text" class="form-control" name="input" ngModel="" #input>
+                    <input type="submit" class="btn btn-primary mt-3" value="Enviar">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Comunicación vía Servicios</h5>
+        <div class="card-text mb-3">
+            En Angular un servicio es una clase que proporciona funcionalidades o datos específicos a otras partes de
+            la aplicación. Estos servicios suelen estar decorados con el decorador Angular Injector, lo que indica que
+            el servicio también puede inyectar otras dependencias. Cuando proporcionas un servicio en el nivel raíz
+            (providedIn: 'root'), Angular crea una instancia única y compartida de ese servicio y la inyecta en
+            cualquier clase que lo solicite.
+        </div>
+        <div class="card">
+            <div class="car-body">
+                <div class="p-3">
+                    <h5 class="card-title">Componente emisor</h5>
+                    <form (ngSubmit)="enviarFormulario(formulario)" #formulario="ngForm">
+                        <div class="mb-3">
+                            <label class="form-label">Mensaje</label>
+                            <input type="text" name="mensaje" [(ngModel)]="mensajeVar" #mensajeinput="ngModel"
+                                class="form-control" placeholder="Por favor ingrese un mensaje" required>
+                        </div>
+                        <input [disabled]="formulario.invalid" type="submit" value="Enviar" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Formularios reactivos (FormGroup)</h5>
+        <div class="card-text mb-3">
+            En los formularios reactivos la mayor parte de la lógica de estos reside en el componente, desde donde
+            se suelen definir todas las validaciones y comportamiento de estos (FormGroup, FormControl, Validators,
+            valueChanges, etc) y la plantilla solo contiene la estructura y apariencia del formulario (utilizan el
+            ReactiveFormsModule).
+        </div>
+
+        <div class="card mb-3">
+            <div class="car-body">
+                <div class="p-3">
+                    <form [formGroup]="formUser" (ngSubmit)="enviarFormulario()">
+                        <div class="mb-2">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" formControlName="name" class="form-control"
+                                placeholder="Por favor ingrese un nombre">
+                            <!-- Obtenido por el metodo getName -->
+                            <div [hidden]="getName.valid || getName.pristine" class="alert alert-danger p-2 mt-2">El
+                                nombre es obligatorio</div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Email</label>
+                            <input type="email" formControlName="email" class="form-control"
+                                placeholder="Por favor ingrese su email">
+                            <div [hidden]="formUser.get('email')?.valid || formUser.get('email')?.pristine"
+                                class="alert alert-danger p-2 mt-2">
+                                <span *ngIf="formUser.get('email')?.errors?.['required']">El email es obligatorio</span>
+                                <span *ngIf="formUser.get('email')?.errors?.['email']">El email debe ser valido</span>
+                            </div>
+                        </div>
+                        <!-- Valida contra el estado del formulario -->
+                        <input [disabled]="formUser.invalid" type="submit" value="Enviar" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div>Persona:</div>
+        <div><span class="badge bg-secondary me-1">{{formUser.value | json}} </span></div>
+        <div><span class="badge bg-secondary me-1">campo nombre: {{formUser.get('name')?.value}} </span></div>
+        <div>Errores campo nombre:</div>
+        <div>
+            <span class="badge bg-secondary me-1">{{getName.errors| json}}</span>
+            <span class="badge bg-secondary me-1">valid:{{getName.valid}}</span>
+        </div>
+        <div>Clases campo nombre:</div>
+        <div>
+            <span class="badge bg-secondary me-1">pristine:{{getName.pristine}}</span>
+            <span class="badge bg-secondary me-1">untouched:{{getName.untouched}}</span>
+            <span class="badge bg-secondary me-1">dirty:{{getName.dirty}}</span>
+        </div>
+        <div>Estado del formulario:</div>
+        <div>
+            <span class="badge bg-secondary me-1">invalid:{{formUser.invalid}}</span>
+        </div>
+    </div>
+</div>

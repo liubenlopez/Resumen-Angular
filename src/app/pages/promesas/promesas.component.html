@@ -1,0 +1,87 @@
+<div class="mb-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Promesas</h5>
+            <p class="card-text">
+                Las promesas son una forma de manejar operaciones asincrónicas. Una promesa es un objeto que representa
+                un valor que puede estar disponible ahora, en el futuro o nunca, como la respuesta a una petición http.
+                Esta representación encapsula el resultado (éxito o error) de una operación asíncrona y el código que
+                debajo de la promesa se sigue ejecutando.
+            </p>
+            <h6>Hay un retraso de 2 segundos en las respuestas para ver la asincronía.</h6>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="container-fluid pt-auto pb-auto">
+            <div class="row">
+                <div class="col-md-6 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                Una promesa en JavaScript se considera "fulfilled" (cumplida) cuando se resuelve
+                                satisfactoriamente y se completa con un valor. Esto significa que la promesa ha cumplido
+                                su función y ha devuelto un resultado. En otras palabras, la promesa ha sido resuelta
+                                exitosamente y se ha completado.
+                            </div>
+                            <button (click)="llamarPromesaFulfilled()" class="btn btn-primary w-100">Promesa
+                                Fulfilled</button>
+                            <div class="mt-2">Respuesta: {{this.respuesta1}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                Cuando una promesa es "rejected" (rechazada), significa que la promesa no
+                                se ha cumplido y ha sido rechazada con un motivo específico. Esto ocurre cuando la
+                                función reject() se llama dentro del cuerpo de la función ejecutora de la promesa,
+                                indicando que la promesa no pudo completarse exitosamente.
+                            </div>
+                            <button (click)="llamarPromesaRejected()" class="btn btn-primary w-100">Promesa
+                                Rejected</button>
+                            <div class="mt-2">Respuesta: {{this.respuesta2}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                Una promesa en JavaScript se puede encadenar con otras promesas para crear una secuencia
+                                de operaciones asíncronas. Esto se conoce como "cadena de promesas" o "promesas en
+                                cadena". Cuando una promesa se completa exitosamente, se puede utilizar el método
+                                .then() para encadenar la siguiente promesa. El método .then() recibe una función que se
+                                ejecutará cuando la promesa se resuelva con éxito y puede recibir el resultado como
+                                argumento. Si ocurre un error durante la ejecución de la promesa, se puede utilizar el
+                                método .catch() para manejarlo. La cadena de promesas permite ejecutar varias
+                                operaciones asíncronas una tras otra, de manera que cada operación se ejecuta después de
+                                que la anterior haya completado exitosamente.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <button (click)="llamarPromesaEnCadena()" class="btn btn-primary w-100">Promesas En
+                                Cadena</button>
+                            <div class="mt-2">Respuesta: {{this.respuesta3}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 pb-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <button (click)="llamarPromesaEnCadena2()" class="btn btn-primary w-100">Promesas En
+                                Cadena 2</button>
+                            <div class="mt-2">Respuesta: {{this.respuesta4}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

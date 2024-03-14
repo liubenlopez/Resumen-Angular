@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Pipes</h5>
+        <p class="card-text">
+            Las pipes en Angular son funciones simples que se utilizan en expresiones de plantilla para aceptar un valor
+            de entrada y devolver un valor transformado. Son útiles para transformar cadenas, cantidades de moneda,
+            fechas y otros datos para su visualización. Se pueden utilizar para transformar la producción y se pueden
+            implementar con tuberías integradas o personalizados.
+        </p>
+        <p class="card-text">
+            El texto que se introduce en el siguiente input se le agrega la pipe nativa "uppercase"
+        </p>
+        <input type="text" [(ngModel)]="textToPipe" class="form-control mb-2" placeholder="Add text to add it a pipe">
+        <p class="bg-primary text-white form-control-sm">{{textToPipe | uppercase}}</p>
+        <p class="card-text">
+            El siguiente ejemplo es una pipe personalizada para filtrar la lista de países mediante el contenido del
+            input.
+        </p>
+        <input type="text" [(ngModel)]="filter" class="form-control mb-2" placeholder="Filter">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let city of ciudades | customPipe:filter">
+                {{city}}
+            </li>
+        </ul>
+    </div>
+</div>

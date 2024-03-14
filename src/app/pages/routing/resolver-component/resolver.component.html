@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Resolvers</h5>
+        <p class="card-text">
+            Los resolutores (Resolvers) en Angular son proveedores de datos que se utilizan para obtener datos antes de
+            que Angular haya cargado completamente el componente asociado. Ayudan a mejorar la experiencia del usuario
+            al proporcionar datos por adelantado, que pueden usarse para completar la plantilla del componente. Los
+            resolver implementan el método resolve(), que se invoca justo antes de que comienza la navegación.
+        </p>
+        <p class="card-text">
+            Como la data viene de un resolver hasta q el resolve no tenga la data el componente no se renderiza.
+        </p>
+        <div><strong>Departmentos:</strong></div>
+        <div *ngFor="let department of departments">{{department}}</div>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+.flexbox-container {
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+    cursor: auto;
+}
+
+.flexbox-container>.text {
+    width: calc(100% - 40px);
+}
+
+.flexbox-container>.button {
+    width: 40px;
+}
+
+.float-right {
+    float: right;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+}
+
+.list-group {
+    width: 100%;
+    padding-right: 5px;
+}
+
+.list-group-item.header {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.list-group-item.header .badge {
+    background: rgba(0, 0, 0, 0.089);
+    color: rgba(255, 255, 255, .55);
+    margin: 0 1px;
+    cursor: pointer;
+}
+
+.list-group-item.header .badge:hover,
+.list-group-item.header .badge.active {
+    color: #fff;
+}
+
+.list-group,
+.list-group .list-group-item {
+    background: none;
+}
+
+.list-group .list-group-item {
+    color: rgba(255, 255, 255, .55);
+    border: 0;
+    border-bottom: 1px solid #ffffff35;
+    cursor: pointer;
+}
+
+.list-group .list-group-item:hover {
+    color: #ffffffc8;
+}
+
+.list-group .list-group-item.active {
+    color: #fff;
+    margin-top: 0px;
+}
+
+.list-group .list-group-item.last {
+    border: 0;
+}
+
+.side-bar-footer {
+    background: rgba(0, 0, 0, 0.089);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+}
+
+.side-bar-footer .nav-link {
+    color: rgba(255, 255, 255, .55);
+    cursor: pointer;
+}
+
+.side-bar-footer .nav-link.active,
+.side-bar-footer .nav-link:hover {
+    color: #fff;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+ul,
+.flexbox-container ul,
+.flexbox-container li,
+.flexbox-container .list-group-item {
+    cursor: auto;
+}
+
+.colorbox {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid;
+}
+
+.colorbox.primary {
+    background-color: #1f6ab5;
+}
+
+.colorbox.secundary {
+    background-color: #ca244d;
+}
+
+.colorbox.dark {
+    background-color: #202831;
+}
+
+.config-options {
+    /* background-color: rgba(0, 0, 0, 0.089) !important; */
+    color: white !important;
+    cursor: auto !important;
+}
+
+.font-size-10px {
+    font-size: 10px;
+}

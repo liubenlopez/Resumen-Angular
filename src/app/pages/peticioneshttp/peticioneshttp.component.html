@@ -1,0 +1,118 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">Peticiones HTTP</h5>
+        <div class="card-text">
+            Las solicitudes HTTP son un conjunto de métodos utilizados para indicar la acción deseada para un recurso
+            específico. Estos métodos son utilizados por los clientes para comunicarse con los servidores.
+            En Angular las solicitudes HTTP se deben realizar mediante alguno de los métodos del módulo HttpClient
+            (@angular/common/http). Para el siguiente ejemplo se utiliza el sitio web
+            <a href="https://crudcrud.com/" target="_blank">https://crudcrud.com/</a> que ofrece de forma gratuita un
+            Rest Endpoint listo para recibir peticiones GET, POST, PUT y DELETE. En este ejemplo se realizan estas
+            cuatro operaciones sobre la entidad Ciudad que contiene id y nombre.
+        </div>
+        <div *ngIf="pasosParaGenerarEndpoint && spinnerClosed && endpointChecked">
+            <div class="mb-3">
+                <strong>
+                    Dado que este servicio persiste los datos de manera temporal para probar este componente debe seguir
+                    los
+                    siguientes pasos:
+                </strong>
+            </div>
+            <div class="mb-3">
+                1 - Abrir el siguiente enlace y copiar el dirección del Endpoint
+                <a href="https://crudcrud.com/" target="_blank">https://crudcrud.com/</a>
+            </div>
+            <div class="mb-3">
+                <img src="./../../../assets/images/endpoint.jpg" class="w-100" style="max-width: 30rem;">
+            </div>
+            <div class="mb-3">
+                2 - Pegar en el siguiente input la dirección del Endpoint
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="row" (ngSubmit)="verificarEndpoint()" #formulario="ngForm">
+                                <div class="col-md-8">
+                                    <label for="Endpoint" class="visually-hidden">Endpoint</label>
+                                    <input type="text" class="form-control" id="Endpoint" name="Endpoint"
+                                        [(ngModel)]="endpoint" required placeholder="Pegar la dirección del Endpoint">
+                                </div>
+                                <div class="col-md-4">
+                                    <button [disabled]="formulario.invalid" type="submit"
+                                        class="btn btn-primary w-100">Confirmar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-spinner (spinnerClosed)="spinnerClosed = $event"></app-spinner>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pt-1" *ngIf="!pasosParaGenerarEndpoint && spinnerClosed && endpointChecked">
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <span class="bg-primary text-white form-control-sm">Endpoint: {{endpoint}}</span>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <form class="row " (ngSubmit)="agregarCiudad()" #formulario="ngForm">
+                                    <div class="col-md-9">
+                                        <label for="Endpoint" class="visually-hidden">Endpoint</label>
+                                        <input type="text" class="form-control" id="ciudadNueva" name="ciudadNueva"
+                                            [(ngModel)]="ciudad.name" required placeholder="Nombre de la ciudad">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button [disabled]="formulario.invalid" type="submit"
+                                            class="btn btn-primary w-100">{{ciudad._id?"Editar":"Agregar"}}
+                                            ciudad</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-relative mb-3">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h5 class="card-title mb-0 position-absolute bottom-0">Ciudades {{ciudades.length}}</h5>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-primary float-end" (click)="cargarCiudades()">Recargar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3 mb-3" *ngIf="ciudadGetted">
+                        <div class="card-body">
+                            {{ciudadGetted | json}}
+                            <span class="float-end">
+                                <i class="fa fa-times cursor-pointer" (click)="closeCiudadGetted()"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let ciudad of ciudades">
+                                {{ciudad.name}}
+                                <span class="float-end">
+                                    <i class="fa fa-eye text-primary font-size-14 me-3 cursor-pointer"
+                                        (click)="obtenerCiudad(ciudad._id)"></i>
+                                    <i class="fa fa-edit text-primary font-size-14 me-3 cursor-pointer"
+                                        (click)="seleccionarCiudad(ciudad)"></i>
+                                    <i class="fa fa-times text-danger cursor-pointer"
+                                        (click)="eliminarCiudad(ciudad._id)"></i>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

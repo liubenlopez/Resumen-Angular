@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Query Params</h5>
+        <p class="card-text">
+            Los parámetros de consulta en Angular se refieren a la capacidad de pasar datos de una ruta a otra dentro de
+            una aplicación de una sola página (SPA). Estos parámetros permiten la transmisión de valores opcionales a
+            una ruta. Al utilizar estos parámetros puede acceder y manipular datos a través de diferentes rutas dentro
+            de una aplicación Angular.
+        </p>
+        <p class="card-text">
+            Para usar Query Params en Angular, puede aprovechar la directiva RouterLink y el servicio ActivatedRoute. La
+            directiva RouterLink proporciona opciones para configurar y manejar parámetros de consulta, mientras que el
+            servicio ActivatedRoute ofrece una forma de acceder y observar estos parámetros en los componentes de su
+            aplicación.
+        </p>
+        <h6>
+            Parametro1 y Parametro2 pasado dentro de la URL (anteriores al separador ?),
+            queryparams/:parametro1/:parametro2
+        </h6>
+        <div class="mb-3">parametro1:{{parametro1}}, parametro2:{{parametro2}}</div>
+        <h6>
+            Parametro1 y Parametro2 pasado dentro de la URL (posteriores al separador ?),
+            queryParams: {{"{"}}param1:'param value 1', param2:'param value 2'{{"}"}}
+        </h6>
+        <div class="mb-3">param1:{{queryparamsexample1}}, param2:{{queryparamsexample2}}</div>
+        <button class="btn btn-primary" (click)="recargarConOtrosDatos()">Redireccionar a este mismo componente</button>
+    </div>
+</div>

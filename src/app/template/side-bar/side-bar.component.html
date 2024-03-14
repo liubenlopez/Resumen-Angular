@@ -1,0 +1,64 @@
+<div class="p-10">
+    <div class="flexbox-container">
+        <div class="text">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item header active last">
+                    <span class="badge {{!mostrarConfiguracion?'active':''}}" (click)="showMenu()">
+                        <i class="fa fa-bars"></i> Menú
+                    </span>
+                    <span class="badge {{mostrarConfiguracion?'active':''}}" (click)="showConfig()">
+                        <i class="fa fa-cog"></i>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="button">
+            <button type="button" class="btn btn-outline-light circle float-right" (click)="cerraSidebar()"><i
+                    class="fa fa-angle-left"></i></button>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush" [hidden]="mostrarConfiguracion">
+        <li class="list-group-item" routerLink="home" routerLinkActive="active">Home</li>
+        <li class="list-group-item" routerLink="enrutamiento" routerLinkActive="active">Enrutamiento</li>
+        <li class="list-group-item" routerLink="peticioneshttp" routerLinkActive="active">Peticiones HTTP</li>
+        <li class="list-group-item" routerLink="promesas" routerLinkActive="active">Promesas</li>
+        <li class="list-group-item last" routerLink="observables" routerLinkActive="active">Observables</li>
+    </ul>
+    <ul class="list-group list-group-flush" [hidden]="!mostrarConfiguracion">
+        <li class="list-group-item config-options">
+            Colores
+        </li>
+        <li class="list-group-item {{color=='primary'?'active':''}}" (click)="changeTemplateColor('primary')">
+            <span class="colorbox primary"></span> Primary
+            <i [hidden]="color!='primary'" class="fa fa-check font-size-10px"></i>
+        </li>
+        <li class="list-group-item {{color=='secundary'?'active':''}}" (click)="changeTemplateColor('secundary')">
+            <span class="colorbox secundary"></span> Secundary
+            <i [hidden]="color!='secundary'" class="fa fa-check font-size-10px"></i>
+        </li>
+        <li class="list-group-item {{color=='dark'?'active':''}} last" (click)="changeTemplateColor('dark')">
+            <span class="colorbox dark"></span> Dark
+            <i [hidden]="color!='dark'" class="fa fa-check font-size-10px"></i>
+        </li>
+    </ul>
+</div>
+
+<div class="side-bar-footer">
+    <ul class="nav justify-content-md-center">
+        <li class="nav-item">
+            <a href="https://www.linkedin.com/in/liuben-lopez-aparicio" target="_blank" class="nav-link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="https://github.com/liubenlopez" target="_blank" class="nav-link">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="toggleConfig()">
+                <i class="fa fa-cog"></i>
+            </a>
+        </li>
+    </ul>
+</div>

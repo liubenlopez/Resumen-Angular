@@ -1,0 +1,82 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">Enrutamiento</h5>
+        <p class="card-text">
+            Angular router-outletes una directiva que actúa como marcador de posición. Angular lo llena dinámicamente
+            según el estado actual del enrutador. Cuando un usuario navega a una ruta específica, el componente
+            correspondiente se carga en el archivo router-outlet. Esto permite la carga dinámica de componentes según la
+            ruta actual. También permite generar un árbol de rutas hijas. Todo esto se define en el módulo app-routing.
+        </p>
+        <button class="btn btn-primary position-relative mb-3" (click)="toggleAccess()">
+            {{tienePermiso?'Desactivar':'Activar'}} permisos de acceso a ruta restringida
+            <span *ngIf="!tienePermiso && notificacion"
+                class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                <span class="visually-hidden">New alerts</span>
+            </span>
+        </button>
+        <nav class="navbar navbar-expand-lg navbar-dark header bg-primary">
+            <div class="container-fluid">
+                <button class="navbar-toggler mr50" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdownHija" aria-controls="navbarNavDropdownHija" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse pr50" id="navbarNavDropdownHija">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link cursor-pointer" aria-current="page" routerLink="developer"
+                                routerLinkActive="active">Desarrollador</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{cursoActivo?'active':''}}" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false" routerLinkActive="active">
+                                Cursos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a class="dropdown-item" routerLink="curso/Angular"
+                                        routerLinkActive="active">Angular</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" routerLink="curso/React"
+                                        routerLinkActive="active">React</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" routerLink="curso/Vue" routerLinkActive="active">Vue</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cursor-pointer" aria-current="page" routerLink="noexiste"
+                                routerLinkActive="active">Ruta Inexistente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cursor-pointer" aria-current="page"
+                                [routerLink]="['queryparams/'+parametroParaQueryparams1+'/'+parametroParaQueryparams2]"
+                                [queryParams]="{ param1: 'param value 1', param2: 'param value 2' }"
+                                routerLinkActive="active">Query Params</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cursor-pointer" aria-current="page" routerLink="restringido"
+                                routerLinkActive="active" (click)="activarNotificacion()">
+                                <i class="fa {{tienePermiso?'fa-unlock':'fa-lock'}}"></i> Restringido
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cursor-pointer" aria-current="page" routerLink="resolver"
+                                routerLinkActive="active">Resolver</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link cursor-pointer" aria-current="page" routerLink="lazyload"
+                                routerLinkActive="active">Lazy Load</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="pt-1">
+    <router-outlet></router-outlet>
+</div>

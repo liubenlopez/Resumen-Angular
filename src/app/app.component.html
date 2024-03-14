@@ -1,0 +1,12 @@
+<app-header [templateColor]="templateColor"></app-header>
+<div id="appsidebartoggle" class="appsidebartoggle {{templateColor}}-color" (click)="sidebartoggle()">
+    <button type="button" class="btn circle float-right"><i class="fa fa-angle-right"></i></button>
+</div>
+<div class="flexbox-container">
+    <div id="appsidebar" class="appsidebar hide {{templateColor}}-color">
+        <app-side-bar (cerrarSideBar)="sidebartoggle()" (templateColor)="changeTemplateColor($event)"></app-side-bar>
+    </div>
+    <div id="appcontainer" class="appcontainer full {{templateColor}}-color">
+        <app-container></app-container>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Componente Hijo</h5>
+        <div class="card-text mb-2">Texto desde el Componente Padre:</div>
+        <div class="card-text mb-3">
+            <span class="badge bg-secondary overflow-ellipsis">
+                {{textoDesdeElPadre?textoDesdeElPadre:"En espera del mensaje de componente padre..."}}
+            </span>
+        </div>
+        <div class="card-text mb-3">Envío de datos al componente padre usando Ouput:</div>
+        <input type="text" name="parentText" [(ngModel)]="childText" (keyup)="emitChildText()" class="form-control" placeholder="Escribir mensaje para el padre">
+    </div>
+</div>

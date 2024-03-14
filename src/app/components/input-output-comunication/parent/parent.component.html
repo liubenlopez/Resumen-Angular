@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Comunicación vía Input/Output</h5>
+        <p class="card-text">Comunicación entre componentes usando Input y Output.</p>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Componente Padre</h5>
+                <div class="card-text mb-3">Envío de datos al componente hijo usando Input:</div>
+                <input type="text" name="parentText" [(ngModel)]="parentText" class="form-control mb-3"
+                    placeholder="Escribir mensaje para el hijo">
+                <app-child [textoDesdeElPadre]="parentText" (childTextEmiter)="childText = $event"></app-child>
+                <div class="card-text mt-3 mb-2">Texto desde el Componente Hijo:</div>
+                <div class="card-text">
+                    <span class="badge bg-secondary overflow-ellipsis">
+                        {{childText?childText:"En espera del mensaje de componente hijo..."}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
