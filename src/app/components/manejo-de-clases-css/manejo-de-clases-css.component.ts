@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class ManejoDeClasesCssComponent {
   text_color: string = "text-danger";
   buttom_disabled: boolean = false;
-  source: string = "../../../assets/images/vivaldi.png"
+  source: string = "assets/images/vivaldi.png"
 }

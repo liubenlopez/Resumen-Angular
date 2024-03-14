@@ -2,11 +2,11 @@
     <div class="card-body">
         <h5 class="card-title">Manejo de clases CSS y atributos</h5>
         <button [disabled]="buttom_disabled" class="btn btn-danger" style="margin: 2px;"
-            (click)="[text_color = 'text-danger', source='../../../assets/images/vivaldi.png']">Rojo</button>
+            (click)="[text_color = 'text-danger', source='assets/images/vivaldi.png']">Rojo</button>
         <button [disabled]="buttom_disabled" class="btn btn-success" style="margin: 2px;"
-            (click)="[text_color = 'text-success', source='../../../assets/images/edge.png']">Verde</button>
+            (click)="[text_color = 'text-success', source='assets/images/edge.png']">Verde</button>
         <button [disabled]="buttom_disabled" class="btn btn-primary" style="margin: 2px;"
-            (click)="[text_color = 'text-primary', source='../../../assets/images/mozilla.png']">Azul</button>
+            (click)="[text_color = 'text-primary', source='assets/images/mozilla.png']">Azul</button>
         <div class="pt-1 pb-1">
             <img [src]="source" style="width: 50px; height: 50px;">
             <span [class]="text_color"><strong>Color</strong></span>
