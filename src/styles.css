@@ -180,3 +180,29 @@
 }
 
 /************************ spinner fin ************************/
+
+@media (max-width: 768px) {
+    .mt-3-movil {
+        margin-top: 1rem !important;
+    }
+
+    .mt-1-movil {
+        margin-top: .25rem !important;
+    }
+
+    .mt-2-movil {
+        margin-top: .5rem !important;
+    }
+
+    .mt-3-movil {
+        margin-top: 1rem !important;
+    }
+
+    .pl-0-movil {
+        padding-left: 0 !important;
+    }
+
+    .pr-0-movil {
+        padding-right: 0 !important;
+    }
+}

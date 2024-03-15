@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <button [disabled]="formulario.invalid" type="submit"
-                                        class="btn btn-primary w-100">Confirmar</button>
+                                        class="btn btn-primary w-100 mt-2-movil">Confirmar</button>
                                 </div>
                             </form>
                         </div>
@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <button [disabled]="formulario.invalid" type="submit"
-                                            class="btn btn-primary w-100">{{ciudad._id?"Editar":"Agregar"}}
+                                            class="btn btn-primary w-100 mt-2-movil">{{ciudad._id?"Editar":"Agregar"}}
                                             ciudad</button>
                                     </div>
                                 </form>
@@ -83,7 +83,8 @@
                                 <h5 class="card-title mb-0 position-absolute bottom-0">Ciudades {{ciudades.length}}</h5>
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-primary float-end" (click)="cargarCiudades()">Recargar</button>
+                                <button type="button" class="btn btn-primary float-end"
+                                    (click)="cargarCiudades()">Recargar</button>
                             </div>
                         </div>
                     </div>

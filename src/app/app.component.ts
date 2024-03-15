@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TemplateColors } from './enums/template-colors';
-import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +18,7 @@ export class AppComponent {
     //Cuando se agrega un setTimeout aqui se genera una secuencia infinita de llamadas al ngAfterViewChecked (no usarlo aqui)
     this.getSideBarStatus();
     this.getTemplateColor();
-    document.querySelector(".appspinner")?.remove();
+    setTimeout(() => { document.querySelector(".appspinner")?.remove(); }, 2000);
   }
 
   getSideBarStatus() {
